@@ -14,6 +14,7 @@ def data_preprocess():
                      ' _windchillm': 'windchill', ' _wspdm': 'windspeed'}, inplace=True)
     data.drop(columns=['precipitation', 'windchill', 'heatindex', 'windgust'], inplace=True)
     print(f'dataset shape (rows, columns) - {data.shape}')
+    data = data.replace(to_replace = -9999, value = np.nan)
     data.ffill(inplace=True)
     print(data[data.isnull()].count())
     return data
