@@ -24,6 +24,7 @@ def feature_engineering():
     for j in data.columns:
         if is_numeric_dtype(data[j]): 
             data = remove_outliers(data,j)
+    data = data.resample('H').mean().fillna(method='ffill')
     data.to_csv("cleaned_weather_series.csv",index=True)
     return data
 
