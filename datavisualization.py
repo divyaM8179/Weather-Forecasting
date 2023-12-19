@@ -26,7 +26,7 @@ def data_visualization():
         fig.update_xaxes(showgrid=False,zeroline=False)
         fig.update_yaxes(showgrid=False,zeroline=False)
         # fig.show()
-        fig.write_image(f"box_{col}.jpg")c
+        fig.write_image(f"box_{col}.jpg")
     columns = ['dewpoint','humidity','temp']
     for col in columns:
         fig = ff.create_distplot([data[col].values],group_labels=[col])
