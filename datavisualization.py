@@ -19,22 +19,33 @@ def data_visualization():
 
     data=data_preprocess()
     columns = ['dewpoint','humidity','temp']
+    start=DT.datetime(2016, 12, 1)
+    end=DT.datetime(2016, 12, 31)
     for col in columns:
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=data.index, y=data[col]['2016-12-01 00:00:00':'2016-12-31 23:00:00'], mode='lines', name=col))
-        fig.update_layout(title=f"Plot of {col}",template='plotly_dark')
+        fig.add_trace(go.Scatter(x=data[start:end].index, y=data[start:end][col], mode='lines', name=col))
+        fig.update_layout(title=f"Plot of {col} December 2016",template='plotly_dark')
         fig.update_xaxes(showgrid=False,zeroline=False)
         fig.update_yaxes(showgrid=False,zeroline=False)
         fig.write_image(f"series_{col}_2016_December.jpg")
-    # columns = ['dewpoint','humidity','temp','wdirdegrees']
-    # for col in columns:
-    #     fig = px.box(data, y=col)
-    #     fig.update_layout(template='plotly_dark')
-    #     #fig.update_layout(plot_bgcolor = "plotly_dark")
-    #     fig.update_xaxes(showgrid=False,zeroline=False)
-    #     fig.update_yaxes(showgrid=False,zeroline=False)
-    #     # fig.show()
-    #     fig.write_image(f"box_{col}.jpg")
+    start=DT.datetime(2016, 4, 1)
+    end=DT.datetime(2016, 4, 30)
+    for col in columns:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=data[start:end].index, y=data[start:end][col], mode='lines', name=col))
+        fig.update_layout(title=f"Plot of {col} April 2016",template='plotly_dark')
+        fig.update_xaxes(showgrid=False,zeroline=False)
+        fig.update_yaxes(showgrid=False,zeroline=False)
+        fig.write_image(f"series_{col}_2016_April.jpg")
+    columns = ['dewpoint','humidity','temp','wdirdegrees']
+    for col in columns:
+        fig = px.box(data, y=col)
+        fig.update_layout(template='plotly_dark')
+        #fig.update_layout(plot_bgcolor = "plotly_dark")
+        fig.update_xaxes(showgrid=False,zeroline=False)
+        fig.update_yaxes(showgrid=False,zeroline=False)
+        # fig.show()
+        fig.write_image(f"box_{col}.jpg")
     # columns = ['dewpoint','humidity','temp']
     # for col in columns:
     #     fig = ff.create_distplot([data[col].values],group_labels=[col])
