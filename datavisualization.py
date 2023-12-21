@@ -18,6 +18,7 @@ import datetime as DT
 def data_visualization():
 
     data=data_preprocess()
+    data = data.resample('T').mean().fillna(method='ffill')
     columns = ['dewpoint','humidity','temp']
     start=DT.datetime(2016, 12, 1)
     end=DT.datetime(2016, 12, 31)
