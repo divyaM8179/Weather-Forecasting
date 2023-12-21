@@ -18,6 +18,14 @@ from pandas.api.types import is_numeric_dtype
 def data_visualization():
 
     data=data_preprocess()
+    columns = ['dewpoint','humidity','temp']
+    for col in columns:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=data.index, y=data[col], mode='lines', name=col))
+        fig.update_layout(title=f"Plot of {col}",template='plotly_dark')
+        fig.update_xaxes(showgrid=False,zeroline=False)
+        fig.update_yaxes(showgrid=False,zeroline=False)
+        fig.write_image(f"series_{col}.jpg")
     columns = ['dewpoint','humidity','temp','wdirdegrees']
     for col in columns:
         fig = px.box(data, y=col)
@@ -44,13 +52,13 @@ def data_visualization():
     fig.update_layout(template='plotly_dark')
     # fig.show()
     fig.write_image(f"heatmap.jpg")
-    for col in columns:
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=data.index, y=data[col], mode='lines', name=col))
-        fig.update_layout(title=f"Plot of {col}",template='plotly_dark')
-        fig.update_xaxes(showgrid=False,zeroline=False)
-        fig.update_yaxes(showgrid=False,zeroline=False)
-        fig.write_image(f"series_{col}.jpg")
+    # for col in columns:
+    #     fig = go.Figure()
+    #     fig.add_trace(go.Scatter(x=data.index, y=data[col], mode='lines', name=col))
+    #     fig.update_layout(title=f"Plot of {col}",template='plotly_dark')
+    #     fig.update_xaxes(showgrid=False,zeroline=False)
+    #     fig.update_yaxes(showgrid=False,zeroline=False)
+    #     fig.write_image(f"series_{col}.jpg")
         # fig.show()
 
     return data
