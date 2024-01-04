@@ -46,23 +46,23 @@ def data_visualization():
         fig.update_yaxes(showgrid=False,zeroline=False)
         # fig.show()
         fig.write_image(f"box_{col}.jpg")
-    # columns = ['dewpoint','humidity','temp']
-    # for col in columns:
-    #     fig = ff.create_distplot([data[col].values],group_labels=[col])
-    #     fig.update_layout(template='plotly_dark')
-    #     #fig.update_layout(plot_bgcolor = "plotly_dark")
-    #     fig.update_xaxes(showgrid=False,zeroline=False)
-    #     fig.update_yaxes(showgrid=False,zeroline=False)
-    #     fig.write_image(f"dist_{col}.jpg")
-    #     # fig.show()
-    # df=data.loc[:,columns]
-    # y=df.corr().columns.tolist()
-    # z=df.corr().values.tolist()
-    # z_text = np.around(z, decimals=4) # Only show rounded value (full value on hover)
-    # fig = ff.create_annotated_heatmap(z,x=y,y=y,annotation_text=z_text,colorscale=px.colors.sequential.Cividis_r,showscale=True)
-    # fig.update_layout(template='plotly_dark')
-    # fig.show()
-    # fig.write_image(f"heatmap.jpg")
+    columns = ['dewpoint','humidity','temp']
+    for col in columns:
+        fig = ff.create_distplot([data[col].values],group_labels=[col])
+        fig.update_layout(template='plotly_dark')
+        #fig.update_layout(plot_bgcolor = "plotly_dark")
+        fig.update_xaxes(showgrid=False,zeroline=False)
+        fig.update_yaxes(showgrid=False,zeroline=False)
+        fig.write_image(f"dist_{col}.jpg")
+        # fig.show()
+    df=data.loc[:,columns]
+    y=df.corr().columns.tolist()
+    z=df.corr().values.tolist()
+    z_text = np.around(z, decimals=4) # Only show rounded value (full value on hover)
+    fig = ff.create_annotated_heatmap(z,x=y,y=y,annotation_text=z_text,colorscale=px.colors.sequential.Cividis_r,showscale=True)
+    fig.update_layout(template='plotly_dark')
+    fig.show()
+    fig.write_image(f"heatmap.jpg")
     # for col in columns:
     #     fig = go.Figure()
     #     fig.add_trace(go.Scatter(x=data.index, y=data[col], mode='lines', name=col))
