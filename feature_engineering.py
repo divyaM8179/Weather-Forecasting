@@ -25,7 +25,7 @@ def feature_engineering():
             data = remove_outliers(data,j)
     data = data.resample('D').mean().fillna(method='ffill')
     print(data.head())
-    data.to_csv("cleaned_weather_series.csv",index=True)
+    data.to_csv("cleaned_data.csv",index=True)
     return data
 
 feature_engineering()
